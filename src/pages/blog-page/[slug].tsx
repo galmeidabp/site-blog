@@ -1,9 +1,9 @@
 import { allPosts } from ".contentlayer/generated";
-import { Post, PostProps } from "@/templates/blog";
+import { PostProps } from "@/templates/blog";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 export default function PostPage({post}: PostProps) {
-  return <Post post={post} />
+  return <PostPage post={post} />
 }
 
 export const getStaticPaths = (async () => {
