@@ -1,5 +1,5 @@
 import { allPosts } from ".contentlayer/generated"
-import PostPage from "@/pages/blog-page/[slug]"
+import { PostPage } from "@/templates/blog";
 import { notFound } from "next/navigation"
 
 type BlogPostPageProps = {
