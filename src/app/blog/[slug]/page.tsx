@@ -3,9 +3,9 @@ import { PostPage } from "@/templates/blog";
 import { notFound } from "next/navigation"
 
 type BlogPostPageProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>
+  }
 }
 
 export const revalidate = 60
@@ -16,8 +16,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const {slug} = await params
+export default function BlogPostPage({ params }: BlogPostPageProps) {
+  const {slug} = params
   const post = allPosts.find((post) => post.slug === slug)
 
   if(!post) {
