@@ -2,7 +2,7 @@ import { allPosts } from ".contentlayer/generated";
 import { PostPage } from "@/templates/blog";
 import { notFound } from "next/navigation";
 
-type BlogPostPage = {
+type BlogPostPageProps = {
   params: {
     slug: string;
   };
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPostPage({ params }: BlogPostPage) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = params;
   const post = allPosts.find((post) => post.slug === slug);
 
