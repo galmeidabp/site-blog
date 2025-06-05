@@ -1,30 +1,28 @@
-import { allPosts } from ".contentlayer/generated"
+import { allPosts } from ".contentlayer/generated";
 import { PostPage } from "@/templates/blog";
-import { notFound } from "next/navigation"
+import { notFound } from "next/navigation";
 
 type BlogPostPageProps = {
   params: {
     slug: string;
-  }
-}
+  };
+};
 
-export const revalidate = 60
+export const revalidate = 60;
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post.slug,
-  }))
+  return allPosts
+    .filter((post) => !!post.slug)
+    .map((post) => ({
+      slug: post.slug,
+    }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const {slug} = params
-  const post = allPosts.find((post) => post.slug === slug)
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = params;
+  const post = allPosts.find((post) => post.slug === slug);
 
-  if(!post) {
-    return notFound()
-  }
+  if (!post) return notFound();
 
-  return (
-    <PostPage post={post} />
-  )
+  return <PostPage post={post} />;
 }
