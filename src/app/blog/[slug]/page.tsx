@@ -21,7 +21,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = allPosts.find((post) => post.slug === slug)
 
   if(!post) {
-    notFound()
+    return notFound()
   }
 
   return (
